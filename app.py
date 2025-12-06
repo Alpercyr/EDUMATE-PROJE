@@ -55,7 +55,7 @@ if prompt := st.chat_input("Dostum, hangi derste takıldın?"):
         # OpenRouter (Qwen Modelini Çağırma)
         try:
             stream = client.chat.completions.create(
-                openchat/openchat-7b:free
+                model="mistralai/mistral-7b-instruct:free", # Ücretsiz model
                 messages=st.session_state.messages,
                 stream=True,
                 temperature=0.7,
