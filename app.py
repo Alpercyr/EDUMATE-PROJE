@@ -107,7 +107,7 @@ if prompt := st.chat_input("Projenin teknik detayları veya amacı hakkında sor
         try:
             # Model Seçimi: Llama 3 veya Mistral (Ücretsiz ve Stabil)
             stream = client.chat.completions.create(
-                model="meta-llama/llama-3-8b-instruct:free", 
+                model="mistralai/mistral-7b-instruct:free", 
                 messages=st.session_state.messages,
                 stream=True,
                 temperature=0.3, # Daha ciddi ve tutarlı olması için düşük sıcaklık
