@@ -158,11 +158,16 @@ if prompt := st.chat_input("Sorunuzu buraya yazın..."):
             )
             
             for chunk in stream:
-                if chunk.choices[0].delta.content is not None:
-                    full_response += chunk.choices[0].delta.content
-                    response_placeholder.markdown(full_response + "▌")
-            
-            response_placeholder.markdown(full_response)
+             if chunk.choices[0].delta.content is not None:
+                 # Gelen parçayı al
+                 part = chunk.choices[0].delta.content
+                 
+                 # O gıcık yazıları filtrele (Temizlik Zamanı!)
+                 if part:
+                     full_response += part
+                     # Ekrana yazmadan önce temizle
+                     clean_response = full_response.replace("[/INST]", "").replace("</s>", "")
+                     response_placeholder.markdown(clean_response + "▌")
         
         except Exception as e:
             st.error(f"Bağlantı hatası: {e}")
