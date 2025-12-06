@@ -140,7 +140,7 @@ if prompt := st.chat_input("Komut giriniz..."):
         try:
             # Llama 3 veya Mistral (Ücretsiz Modeller)
             stream = client.chat.completions.create(
-                model="meta-llama/llama-3-8b-instruct:free",
+                model="mistralai/mistral-7b-instruct:free",
                 messages=st.session_state.messages,
                 stream=True,
                 temperature=0.3,
