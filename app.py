@@ -3,71 +3,71 @@ from openai import OpenAI
 
 # --- SAYFA AYARLARI ---
 st.set_page_config(
-    page_title="RND-M Asistan",
+    page_title="RND-M Asistanı",
     page_icon="🌰",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# --- CSS İLE TEMA ENTEGRASYONU (Senin Sitene Uydurma) ---
+# --- CSS: KURUMSAL VE PROFESYONEL TASARIM ---
 st.markdown("""
     <style>
-    /* ANA ARKAPLAN - Senin sitenin koyu rengi (#0f172a) */
+    /* ANA ARKAPLAN - Koyu Tema */
     .stApp {
         background-color: #0f172a;
         color: #e2e8f0;
     }
 
-    /* SIDEBAR (YAN MENÜ) TASARIMI */
+    /* GİZLENECEK ÖGELER */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+
+    /* YAN MENÜ */
     div[data-testid="stSidebar"] {
-        background-color: #1e293b; /* Biraz daha açık koyu ton */
+        background-color: #1e293b;
         border-right: 1px solid #2e7d32;
     }
 
-    /* BAŞLIKLAR */
+    /* BAŞLIK VE METİNLER */
     h1, h2, h3 {
-        color: #4ade80 !important; /* Parlak Yeşil */
-        font-family: 'Courier New', monospace; /* Terminal havası */
+        color: #4ade80 !important;
+        font-family: 'Courier New', monospace;
     }
 
-    /* BİLGİ KUTUSU (INFO BOX) TASARIMI - SANA ÖZEL */
+    /* BİLGİ KUTUSU */
     .info-box {
-        background: rgba(30, 41, 59, 0.8); /* Yarı saydam koyu */
-        border: 1px solid #4ade80; /* Yeşil Çerçeve */
+        background: rgba(30, 41, 59, 0.8);
+        border: 1px solid #4ade80;
         border-radius: 10px;
         padding: 20px;
         color: #ecfdf5;
         font-family: 'Courier New', monospace;
-        box-shadow: 0 0 15px rgba(74, 222, 128, 0.1);
         margin-bottom: 20px;
     }
 
-    .info-box i {
-        color: #fbbf24; /* İkonlar sarı */
-    }
-
-    /* SOHBET BALONLARI */
-    div[data-testid="stChatMessage"] {
-        background-color: #1e293b;
-        border: 1px solid #334155;
-        border-radius: 10px;
-    }
-    
-    /* Kullanıcı Mesajı */
+    /* KULLANICI MESAJI */
     div[data-testid="stChatMessage"][data-testid="user"] {
-        background-color: #064e3b; /* Koyu yeşil arka plan */
+        background-color: #064e3b;
     }
-
     </style>
     """, unsafe_allow_html=True)
 
-# --- YAN MENÜ ---
+# --- YAN MENÜ: PROJE KÜNYESİ ---
 with st.sidebar:
     st.image("https://img.icons8.com/color/96/hazelnut.png", width=70)
-    st.title("RND-M v1.0")
+    st.title("RND-M v2.1")
+    st.markdown("**Konumsal Veri Destekli Dijital Randıman Sistemi**")
     st.markdown("---")
-    st.info("**👨‍💻 Geliştirici: Giresun Fen Lisesi**")
-    st.write("Doğu Karadeniz Fındık Ekonomisinde Dijital Dönüşüm Projesi.")
+    
+    st.success("👨‍💻 **Geliştirici:** Giresun Fen Lisesi")
+    st.info("📂 **Dal:** Coğrafya / Tarım Teknolojileri")
+    
+    with st.expander("📊 Proje İstatistikleri"):
+        st.write("• **Analiz:** Farklı Randıman Türleri")
+        st.write("• **Hata Payı:** %0 (Dijital)")
+        st.write("• **Ekonomik Risk:** %1 Hata = Milyonlarca Dolar")
+        
     st.caption("© 2025 RND-M Teknoloji")
 
 # --- ANA EKRAN ---
@@ -75,15 +75,16 @@ col1, col2 = st.columns([1, 8])
 with col1:
     st.write("")
 with col2:
-    st.title("RND-M Teknik Asistanı")
+    st.title("RND-M Proje Asistanı")
     
-    # --- TASARIMA UYDURULMUŞ BİLGİ KUTUSU ---
+    # Kullanıcıya Soru Önerileri
     st.markdown("""
     <div class="info-box">
-        <b>💡 SİSTEM HAZIR. ŞUNLARI SORABİLİRSİNİZ:</b><br><br>
-        • <i>"Saha testlerinde (Sahil/Yüksek kol) ne sonuç aldınız?"</i><br>
-        • <i>"Cihazın içindeki Arduino ve sensörler nasıl çalışıyor?"</i><br>
-        • <i>"Manuel kırma yöntemi neden ekonomik zarar yaratıyor?"</i>
+        <b>🤖 SİSTEM HAZIR. ŞUNLARI SORABİLİRSİNİZ:</b><br><br>
+        • <i>"Saha çalışmalarında ne tür fındıklar analiz edildi?"</i><br>
+        • <i>"Manuel kırma yöntemi neden hatalı sonuç veriyor?"</i><br>
+        • <i>"Cihazın çalışma prensibi ve formülü nedir?"</i><br>
+        • <i>"Üreticilerin mevcut sisteme güveni ne durumda?"</i>
     </div>
     """, unsafe_allow_html=True)
 
@@ -96,29 +97,49 @@ try:
 except Exception:
     st.error("Sistem Hatası: API Anahtarı bulunamadı.")
 
-# --- SİSTEM ZEKASI ---
+# --- SİSTEM ZEKASI (GÜNCELLENMİŞ BEYİN) ---
 system_prompt = """
-Sen RND-M Projesinin Yapay Zeka Mühendisisin.
-GELİŞTİRİCİ: Giresun Fen Lisesi Öğrencileri.
-GÖREV: Proje raporundaki teknik verileri savunmak.
+Sen RND-M (Randıman Analiz Sistemi) projesinin yapay zeka sözcüsü ve baş mühendisisin.
 
-TEKNİK HAFIZA:
-1. SORUN: Manuel randıman ölçümü (çekiçle) zaman kaybı ve hata dolu. %1 hata = Milyonlarca dolar kayıp.
-2. ÇÖZÜM: RND-M Cihazı. Donanım: Arduino Nano, Load Cell, HX711, LCD Ekran. Yöntem: Standart 250gr numune.
-3. KANIT: Giresun'da 5 lokasyonda test edildi. Manuel yöntemin üreticinin hakkını yediği (aşağı yuvarlama yaptığı) kanıtlandı.
-4. SONUÇ: Cihaz saniyeler içinde %100 doğru sonuç veriyor. Üreticilerin %90'ı eski sisteme güvenmiyor.
+### 🆔 KİMLİK:
+- **GELİŞTİRİCİ:** Giresun Fen Lisesi Öğrencileri.
+- **PROJE ADI:** Doğu Karadeniz Fındık Ekonomisinde Şeffaflık ve Standardizasyon (RND-M).
+- **ALAN:** Coğrafya / Tarım Teknolojileri.
 
-KURALLAR:
-- ASLA İngilizce teknik kodları (Örn: [/INST], </s>) cevapta gösterme.
-- Profesyonel, ciddi ve teknik bir dil kullan. "Kanka" deme.
-- Soruları Giresun'daki saha verilerine dayanarak cevapla.
+### 🧠 GÜNCELLENMİŞ TEKNİK HAFIZA (BUNLARI KULLAN):
+
+1. **SORUN ANALİZİ (MEVCUT DURUM):**
+   - Randıman ölçümü hala manuel (çekiçle kırma, göz kararı ayıklama) yapılıyor.
+   - Bu yöntem zaman alıcıdır ve güven sorunlarına yol açar.
+   - 2.5 Milyar dolarlık ihracat ekonomisinde %1'lik ölçüm hatası, milyonlarca dolar kayıp demektir.
+   - [cite_start]**Anket Sonucu:** Üreticilerin %90'ı mevcut manuel sisteme GÜVENMEMEKTEDİR[cite: 182].
+
+2. **ÇÖZÜM VE DONANIM (RND-M CİHAZI):**
+   - [cite_start]**Donanım:** Arduino Nano (İşlemci), Yük Hücresi/Load Cell (Hassas Tartım), HX711 Kartı, LCD Ekran[cite: 169].
+   - **Yazılım:** "Standart Numune" prensibiyle çalışır.
+   - [cite_start]**FORMÜL:** `(İç Ağırlık / 250) * 100`[cite: 171].
+   - [cite_start]**Hız:** Manuel işlem dakikalar sürerken, dijital sistem saniyeler içinde sonuç verir[cite: 196].
+
+3. **SAHA TEST SONUÇLARI (KANITLAR):**
+   - [cite_start]**Kapsam:** Proje kapsamında **farklı randıman türlerine sahip fındıklar** analiz edilmiştir[cite: 123].
+   - [cite_start]**Bulgu:** Farklı kalite ve türlerdeki (Levant, Giresun kalite vb.) fındıklar üzerinde yapılan testlerde, manuel yöntemin tutarsız olduğu ve aşağı/yukarı yuvarlama hataları yaptığı kanıtlanmıştır[cite: 132, 190].
+   - Dijital sistem, fındığın türü veya randımanı ne olursa olsun %100 doğru ve standart sonuç vermiştir.
+
+4. **GELECEK HEDEFİ:**
+   - [cite_start]Cihaza Bluetooth/Wi-Fi eklenerek verilerin haritaya işlenmesi ve "Bölgesel Verim Haritası" oluşturulması[cite: 204].
+
+### 🗣️ KONUŞMA KURALLARI:
+- **Profesyonel ve Bilimsel Ol:** Asla "Kanka" deme. Bir mühendis ciddiyetiyle konuş.
+- **Kanıt Göster:** Cevaplarında "Analiz sonuçlarımıza göre...", "Farklı randıman türlerinde yaptığımız testlere göre..." gibi ifadeler kullan.
+- **Teknik Detay Ver:** Donanım sorulursa Arduino ve Load Cell'den bahset.
+- **İngilizce Kodları Gizle:** Cevapta [/INST] gibi kodlar görürsen sil.
 """
 
 # --- SOHBET GEÇMİŞİ ---
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {"role": "system", "content": system_prompt},
-        {"role": "assistant", "content": "Sistem aktif. RND-M projesiyle ilgili teknik sorularınızı bekliyorum."}
+        {"role": "assistant", "content": "Merhaba. RND-M projesi ve farklı randıman türleri üzerindeki analizlerimiz hakkında sorularınızı yanıtlamaya hazırım."}
     ]
 
 for message in st.session_state.messages:
@@ -126,8 +147,8 @@ for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-# --- KULLANICI GİRİŞİ VE FİLTRELEME ---
-if prompt := st.chat_input("Komut giriniz..."):
+# --- KULLANICI GİRİŞİ ---
+if prompt := st.chat_input("Proje hakkında teknik soru sorun..."):
     
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
@@ -138,7 +159,6 @@ if prompt := st.chat_input("Komut giriniz..."):
         full_response = ""
         
         try:
-            # Llama 3 veya Mistral (Ücretsiz Modeller)
             stream = client.chat.completions.create(
                 model="mistralai/mistral-7b-instruct:free",
                 messages=st.session_state.messages,
@@ -149,20 +169,12 @@ if prompt := st.chat_input("Komut giriniz..."):
             for chunk in stream:
                 if chunk.choices[0].delta.content is not None:
                     part = chunk.choices[0].delta.content
-                    
-                    # --- FİLTRELEME SİSTEMİ (ÇÖP TEMİZLİĞİ) ---
-                    # Gelen parçada yasaklı kelime varsa onu boşlukla değiştir
-                    part = part.replace("[/INST]", "").replace("</s>", "").replace("<s>", "")
-                    
-                    full_response += part
-                    
-                    # Ekrana basarken de son bir kontrol yap
-                    clean_display = full_response.replace("[/INST]", "").replace("</s>", "")
-                    response_placeholder.markdown(clean_display + "▌")
+                    clean_part = part.replace("[/INST]", "").replace("</s>", "")
+                    full_response += clean_part
+                    response_placeholder.markdown(full_response + "▌")
             
-            # Son hali temiz bir şekilde yaz
-            final_clean = full_response.replace("[/INST]", "").replace("</s>", "")
-            response_placeholder.markdown(final_clean)
+            final_response = full_response.replace("[/INST]", "").replace("</s>", "")
+            response_placeholder.markdown(final_response)
         
         except Exception as e:
             st.error(f"Bağlantı hatası: {e}")
