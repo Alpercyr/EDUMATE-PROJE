@@ -56,7 +56,7 @@ st.markdown("""
 # --- YAN MENÜ: PROJE KÜNYESİ ---
 with st.sidebar:
     st.image("https://img.icons8.com/color/96/hazelnut.png", width=70)
-    st.title("RND-M v2.1")
+    st.title("RND-M ")
     st.markdown("**Konumsal Veri Destekli Dijital Randıman Sistemi**")
     st.markdown("---")
     
